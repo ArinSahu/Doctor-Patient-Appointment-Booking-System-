@@ -11,13 +11,17 @@
     <p>Phone number: <%= doctor.phone_no %></p>
     <p>Speciality: <%= doctor.speciality %></p>
 
-    <h2>Your Time Slots</h2>
-    <ul>
-        <% timeSlots.forEach(function(slot) { %>
-            <li><%= slot.date %>: <%= slot.startTime %> - <%= slot.endTime %></li>
-        <% }) %>
-    </ul>
+    <form action="/doctorHome" method="post">
+        <input type="hidden" name="doctorId" value="<%= doctor._id %>">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        <label for="startTime">Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required>
+        <label for="endTime">End Time:</label>
+        <input type="time" id="endTime" name="endTime" required>
+        <button type="submit">Add Time Slot</button>
+    </form> -->
 
-    <a href="/addTimeSlot?doctorId=<%= doctor._id %>">Add Time Slot</a>
+     
 </body>
 </html>

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb://localhost:27017/Login-tut");
+const connect = mongoose.connect("mongodb+srv://arinsahu0:kdfiKtWNmv35Xyac@cluster0.behds7e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 // connect.then(()=>{
 //     console.log("ho gaya db connect");
@@ -68,6 +68,7 @@ const timeslotSchema = new mongoose.Schema({
         required: true
     }
 });
+
 
 
 const users= new mongoose.model("users",loginSchema);

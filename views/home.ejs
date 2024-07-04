@@ -6,27 +6,31 @@
   <title>Disease Selector</title>
 </head>
 <body>
-  <h1>Select Your Disease</h1>
-  <select id="disease-select">
-    <option value="" disabled selected>Select a disease</option>
-    <option value="COVID-19">COVID-19</option>
-    <option value="Influenza">Influenza</option>
-    <option value="Common Cold">Common Cold</option>
-    <option value="Chickenpox">Chickenpox</option>
-    <option value="Malaria">Malaria</option>
-    <!-- Add more diseases here -->
-  </select>
-  <div id="selected-disease"></div>
+  
+  <div class="find-doctor">
+    <h1 class="find-doctor__title">Find a Doctor</h1>
+    <form id="find-doctor-form" class="container">
+        <div class="find-doctor__content">
+            <div class="find-doctor__box">
+                <i class="ri-hospital-line find-doctor__icon"></i>
+                <div class="find-doctor__box-input">
+                    <select required class="find-doctor__input" id="disease" name="diseaseId">
+                        <option value="" disabled selected hidden>Select a symtom</option>
+                        <option value="1">Fever</option>
+                        <option value="2">Chest Pain</option>
+                        <option value="3">Headache</option>
+                        <option value="3">Pimples and rashes</option>
+                       
+                    </select>
+                    <label for="disease" class="find-doctor__label">Symtoms</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="find-doctor__button">Find Doctors</button>
+    </form>
+    <div id="doctors-list" class="doctors-list"></div>
+</div>
 
-  <script>
-    const diseaseSelect = document.getElementById('disease-select');
-    const selectedDiseaseDiv = document.getElementById('selected-disease');
 
-    diseaseSelect.addEventListener('change', function() {
-      const selectedDisease = diseaseSelect.value;
-      selectedDiseaseDiv.innerHTML = <h2>You selected: ${selectedDisease}</h2>;
-      // Additional actions based on the selected disease
-    });
-  </script>
 </body>
 </html>

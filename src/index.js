@@ -105,7 +105,7 @@ app.post("/doctorLogin", async (req, res) => {
     try {
         const doctor = await doctors.findOne({ name: req.body.username });
         if (!doctor) {
-            res.render("login",{message:"User not found"});
+            res.render("doctorLogin",{message:"User not found"});
         }
         else{
         const isPasswordMatch = await bcrypt.compare(req.body.password, doctor.password);
@@ -121,22 +121,15 @@ app.post("/doctorLogin", async (req, res) => {
         res.send("Wrong details");
     }
 });
-app.get("/addTimeSlot", (req, res) => {
-    res.render("addTimeSlot");
-});
+app.post("/doctorHome",async(req,res)=>{
 
-app.post("/addTimeSlot", async (req, res) => {
-    const data = {
-        doctorId: req.body.doctorId,
-        date: req.body.date,
-        startTime: req.body.startTime,
-        endTime: req.body.endTime
-    };
-    const timeSlotData = await timeslotCollection.insertMany(data);
-    const doctor = await doctorCollection.findById(req.body.doctorId);
-    const timeSlots = await timeslotCollection.find({ doctorId: doctor._id });
-    res.render("doctorHome", { doctor, timeSlots });
-});
+})
+app.post("/home",async(req,res)=>{
+    const data={
+        symtom:req.body.symtom
+    }
+
+} )
 
 
 app.listen(port, () => {
