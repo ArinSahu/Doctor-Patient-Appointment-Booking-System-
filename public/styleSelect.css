@@ -1,4 +1,4 @@
-/* number of small circles */
+
 @property --a {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -11,9 +11,9 @@
   }
   img {
     --r: 50px;
-    /* control the small circles radius and the main size */
+    
     --f: 1.7;
-    /* control the scale factor, between 1.5 and 2 you get nice result */
+    
     --c: #E4844A;
     width: calc(var(--r)*(1 + 1/tan(180deg/15)));
     aspect-ratio: 1;

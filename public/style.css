@@ -1,7 +1,7 @@
-/*=============== GOOGLE FONTS ===============*/
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-/*=============== BASE ===============*/
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -34,7 +34,7 @@ img {
   height: auto;
 }
 
-/*=============== LOGIN ===============*/
+
 .login {
   position: relative;
   height: 100vh;
@@ -181,13 +181,13 @@ img {
   text-decoration: underline;
 }
 
-/* Input focus move up label */
+
 .login__input:focus + .login__label {
   top: -12px;
   font-size: 0.813rem;
 }
 
-/* Input focus sticky top label */
+
 .login__input:not(:placeholder-shown).login__input:not(:focus) + .login__label {
   top: -12px;
   font-size: 0.813rem;
@@ -198,27 +198,11 @@ img {
   font-size: 0.813rem;
 }
 
-/* Input focus sticky top label */
+
 .login__input:not(:placeholder-shown).login__input:not(:focus) + .login__label {
   top: -12px;
   font-size: 0.813rem;
 }
 
 
-/*=============== BREAKPOINTS ===============*/
-/* For medium devices */
-@media screen and (min-width: 576px) {
-  .login {
-    justify-content: center;
-  }
 
-  .container {
-    width: 400px;
-    padding: 4rem 3rem 3.5rem;
-    border-radius: 1.5rem;
-  }
-
-  .login__title {
-    font-size: 2rem;
-  }
-}

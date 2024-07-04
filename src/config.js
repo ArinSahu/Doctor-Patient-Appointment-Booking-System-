@@ -5,7 +5,7 @@ const connect = mongoose.connect("mongodb://localhost:27017/Login-tut");
 //     console.log("ho gaya db connect");
 // })
 // .catch(()=>{
-//     console.log("nai hua db connect");
+//     console.log("nai hua db connect madarchod");
 // })
 
 const loginSchema= new mongoose.Schema({
