@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="/style.css" />
+
+    <title>DoctorSignup</title>
+  </head>
+  <body>
+    <div class="login">
+      <img src="/login-bg.png" alt="login image" class="login__img" />
+
+      <form action="/doctorSignup" method="post" class="container">
+        <h1 class="login__title">SignUp</h1>
+
+        <div class="login__content">
+          <div class="login__box">
+            <i class="ri-user-3-line login__icon"></i>
+
+            <div class="login__box-input">
+              <input
+                type="text"
+                required
+                class="login__input"
+                id="login-name"
+                name="username"
+                placeholder=" "
+              />
+              <label for="login-name" class="login__label">Name</label>
+            </div>
+          </div>
+          <div class="login__box">
+            <i class="ri-user-3-line login__icon"></i>
+
+            <div class="login__box-input">
+              <input
+                type="text"
+                required
+                class="login__input"
+                id="login-name"
+                name="email"
+                placeholder=" "
+              />
+              <label for="login-name" class="login__label">E-mail</label>
+            </div>
+          </div>
+          <div class="login__box">
+            <i class="ri-user-3-line login__icon"></i>
+
+            <div class="login__box-input">
+              <input
+                type="text"
+                required
+                class="login__input"
+                id="login-name"
+                name="phonenumber"
+                placeholder=" "
+              />
+              <label for="login-name" class="login__label">Phone number</label>
+            </div>
+          </div>
+          <div class="login__box">
+            <i class="ri-user-3-line login__icon"></i>
+
+            <div class="login__box-input">
+              <input
+                type="text"
+                required
+                class="login__input"
+                id="regid"
+                name="regid"
+                placeholder=" "
+              />
+              <label for="login-name" class="login__label">Registration ID</label>
+            </div>
+          </div>
+          <div class="login__box">
+            <i class="ri-lock-2-line login__icon"></i>
+
+            <div class="login__box-input">
+              <input
+                type="password"
+                required
+                class="login__input"
+                name="password"
+                id="login-pass"
+                placeholder=" "
+              />
+              <label for="login-pass" class="login__label">Password</label>
+              <!-- <i class="ri-eye-off-line login__eye" id="login-eye"></i> -->
+            </div>
+          </div>
+          <div class="login__box">
+            <i class="ri-lock-3-line login__icon"></i>
+            <div class="login__box-input">
+              <label for="login-speciality" class="login__label">Speciality</label>
+              <br><br>
+                <select required class="login__input" name="speciality" id="login-speciality">
+                    <option value="" disabled selected>Select your speciality</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="dermatology">Dermatology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="psychiatry">Psychiatry</option>
+                    <br>
+                </select>
+            </div>
+        </div>
+          </div>
+        </div>
+        <button type="submit" class="login__button signupbutton">SignUp</button>
+
+        <!-- <p class="login__register">Account already exists!</p> -->
+      </form>
+    </div>
+  </body>
+</html>

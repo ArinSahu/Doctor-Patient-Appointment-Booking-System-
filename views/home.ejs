@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disease Selector</title>
+</head>
+<body>
+  <h1>Select Your Disease</h1>
+  <select id="disease-select">
+    <option value="" disabled selected>Select a disease</option>
+    <option value="COVID-19">COVID-19</option>
+    <option value="Influenza">Influenza</option>
+    <option value="Common Cold">Common Cold</option>
+    <option value="Chickenpox">Chickenpox</option>
+    <option value="Malaria">Malaria</option>
+    <!-- Add more diseases here -->
+  </select>
+  <div id="selected-disease"></div>
+
+  <script>
+    const diseaseSelect = document.getElementById('disease-select');
+    const selectedDiseaseDiv = document.getElementById('selected-disease');
+
+    diseaseSelect.addEventListener('change', function() {
+      const selectedDisease = diseaseSelect.value;
+      selectedDiseaseDiv.innerHTML = <h2>You selected: ${selectedDisease}</h2>;
+      // Additional actions based on the selected disease
+    });
+  </script>
+</body>
+</html>

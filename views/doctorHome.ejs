@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doctorHome</title>
+</head>
+<body>
+    <h1>Welcome, <%= doctor.name %></h1>
+    <p>E-mail: <%= doctor.email %></p>
+    <p>Phone number: <%= doctor.phone_no %></p>
+    <p>Speciality: <%= doctor.speciality %></p>
+
+    <h2>Your Time Slots</h2>
+    <ul>
+        <% timeSlots.forEach(function(slot) { %>
+            <li><%= slot.date %>: <%= slot.startTime %> - <%= slot.endTime %></li>
+        <% }) %>
+    </ul>
+
+    <a href="/addTimeSlot?doctorId=<%= doctor._id %>">Add Time Slot</a>
+</body>
+</html>
