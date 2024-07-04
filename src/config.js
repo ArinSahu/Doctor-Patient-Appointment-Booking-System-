@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const connect = mongoose.connect("mongodb+srv://arinsahu0:kdfiKtWNmv35Xyac@cluster0.behds7e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+const connect = mongoose.connect("mongodb://localhost:27017/Login-tut");
 
 // connect.then(()=>{
 //     console.log("ho gaya db connect");
@@ -46,32 +46,29 @@ const doctorloginSchema= new mongoose.Schema({
     speciality: {
         type: String,
         required: true
-    }
+    },
+    timeSlots: [{
+        doctorId:{
+            type:Number,
+            required:true
+        },
+        date:{
+            type:Date
+        },
+        startTime:{
+            type:String
+        },
+        endTime:{
+            type:String
+        }        
+    }]
 });
 
-const timeslotSchema = new mongoose.Schema({
-    doctorId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'doctors',
-        required: true
-    },
-    date: {
-        type: String,
-        required: true
-    },
-    startTime: {
-        type: String,
-        required: true
-    },
-    endTime: {
-        type: String,
-        required: true
-    }
-});
+
 
 
 
 const users= new mongoose.model("users",loginSchema);
 const doctors = mongoose.model("doctors", doctorloginSchema);
-const timeslotCollection = new mongoose.model("timeslots", timeslotSchema);
-module.exports = { users, doctors ,timeslotCollection};
+
+module.exports = { users, doctors};

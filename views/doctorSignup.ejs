@@ -73,7 +73,7 @@
 
             <div class="login__box-input">
               <input
-                type="text"
+                type="number"
                 required
                 class="login__input"
                 id="regid"
@@ -117,6 +117,11 @@
         </div>
           </div>
         </div>
+        <% if (typeof message !== 'undefined') { %>
+          <div class="alert alert-danger">
+              <p><%= message %></p>
+          </div>
+      <% } %><br>
         <button type="submit" class="login__button signupbutton">SignUp</button>
 
         <!-- <p class="login__register">Account already exists!</p> -->

@@ -10,9 +10,10 @@
     <p>E-mail: <%= doctor.email %></p>
     <p>Phone number: <%= doctor.phone_no %></p>
     <p>Speciality: <%= doctor.speciality %></p>
+    <p>Reg_ID: <%= doctor.reg_id %></p>
 
-    <form action="/doctorHome" method="post">
-        <input type="hidden" name="doctorId" value="<%= doctor._id %>">
+    <form action="/addTimeSlot" method="post">
+        <input type="hidden" name="doctorId" value="<%= doctor.reg_id %>">
         <label for="date">Date:</label>
         <input type="date" id="date" name="date" required>
         <label for="startTime">Start Time:</label>
@@ -20,8 +21,12 @@
         <label for="endTime">End Time:</label>
         <input type="time" id="endTime" name="endTime" required>
         <button type="submit">Add Time Slot</button>
-    </form> -->
-
-     
+    </form>
+    <% if (typeof message !== 'undefined') { %>
+        <div class="alert alert-danger">
+            <p><%= message %></p>
+        </div>
+    <% } %><br>
+    
 </body>
 </html>

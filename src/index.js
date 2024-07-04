@@ -121,15 +121,28 @@ app.post("/doctorLogin", async (req, res) => {
         res.send("Wrong details");
     }
 });
-app.post("/doctorHome",async(req,res)=>{
 
-})
-app.post("/home",async(req,res)=>{
-    const data={
-        symtom:req.body.symtom
+app.post("/addTimeSlot", async (req, res) => {
+    
+    try {
+        const doctor = await doctors.findOne({ reg_id: req.body.doctorId });
+        if (!doctor) {
+            res.send("Doctor not found");
+            return;
+        }
+        const newTimeSlot = {
+            doctorId: doctor.reg_id,
+            date: req.body.date,
+            startTime: req.body.startTime,
+            endTime: req.body.endTime
+        };
+        doctor.timeSlots.push(newTimeSlot);
+        await doctor.save();
+        res.send("Time slot added successfully");
+    } catch (error) {
+        res.send("Error adding time slot");
     }
-
-} )
+});
 
 
 app.listen(port, () => {

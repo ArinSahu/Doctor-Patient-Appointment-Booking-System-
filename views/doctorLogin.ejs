@@ -61,7 +61,11 @@
         
 
         <button type="submit" class="login__button">Login</button>
-
+        <% if (typeof message !== 'undefined') { %>
+          <div class="alert alert-danger">
+              <p><%= message %></p>
+          </div>
+      <% } %><br>
         <p class="login__register">
           Don't have an account? <a href="/doctorSignup">Register</a>
         </p>
