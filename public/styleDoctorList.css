@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    width: 80%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.doctor-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.doctor-card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.doctor-card h2 {
+    margin: 0 0 10px;
+    color: #007bff;
+}
+.doctor-card p {
+    margin: 5px 0;
+    color: #555;
+}

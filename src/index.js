@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require("path");
 const bcrypt = require("bcrypt");
-const {users,doctors} = require("./config")
+const {users,doctors,symtoms} = require("./config")
 const port = 3000;
 
 const app = express();
@@ -146,11 +146,18 @@ app.post("/addTimeSlot", async (req, res) => {
 
 
 app.post("/showDoctors",async(req,res)=>{
-    const diseaseId=req.body.diseaseId;
-    //const symtom=req.body.symtom;
-
-    //console.log(symtom);
-    res.send("doctors display");
+    const symptom = req.body.symtom;
+    const specialityData = await symtoms.findOne({ symtoms: symptom });
+        if (!specialityData) {
+            res.status(404).send("No speciality found for this symptom");
+            return;
+        }
+        const doctorsList = await doctors.find({ speciality: specialityData.dept });
+        if (doctorsList.length === 0) {
+            res.status(404).send("No doctors found for this speciality");
+            return;
+        }
+        res.render("doctorsList", { doctors: doctorsList });
 });
 
 app.listen(port, () => {

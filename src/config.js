@@ -19,6 +19,15 @@ const loginSchema= new mongoose.Schema({
     }
 });
 
+const symtomSchema=new mongoose.Schema({
+    dept:{
+        type:String
+    },
+    symtoms:{
+        type:String
+    }
+})
+
 const doctorloginSchema= new mongoose.Schema({
     name:{
         type:String,
@@ -70,5 +79,6 @@ const doctorloginSchema= new mongoose.Schema({
 
 const users= new mongoose.model("users",loginSchema);
 const doctors = mongoose.model("doctors", doctorloginSchema);
+const symtoms = mongoose.model("symtoms", symtomSchema);
 
-module.exports = { users, doctors};
+module.exports = { users, doctors,symtoms};
