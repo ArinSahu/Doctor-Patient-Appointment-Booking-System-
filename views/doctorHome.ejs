@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>doctorHome</title>
+    <link rel="stylesheet" href="/styleDoctorHome.css" />
+    
+
 </head>
 <body>
+    <img src="/a2.png" class="login__img" />
+    <div class="container doctorDetails">
     <h1>Welcome, <%= doctor.name %></h1>
     <p>E-mail: <%= doctor.email %></p>
     <p>Phone number: <%= doctor.phone_no %></p>
@@ -27,6 +32,6 @@
             <p><%= message %></p>
         </div>
     <% } %><br>
-    
+    </div>
 </body>
 </html>

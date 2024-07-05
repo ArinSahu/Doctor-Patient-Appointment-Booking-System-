@@ -145,6 +145,14 @@ app.post("/addTimeSlot", async (req, res) => {
 });
 
 
+app.post("/showDoctors",async(req,res)=>{
+    const diseaseId=req.body.diseaseId;
+    //const symtom=req.body.symtom;
+
+    //console.log(symtom);
+    res.send("doctors display");
+});
+
 app.listen(port, () => {
     console.log(`server running on port :${port}`);
 })

@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Disease Selector</title>
+
+  <title>PatientHome</title>
+  <link rel="stylesheet" href="/homeStyle.css"/>
 </head>
 <body>
-  
-  <div class="find-doctor">
-    <h1 class="find-doctor__title">Find a Doctor</h1>
-    <form id="find-doctor-form" class="container">
-        <div class="find-doctor__content">
-            <div class="find-doctor__box">
-                <i class="ri-hospital-line find-doctor__icon"></i>
-                <div class="find-doctor__box-input">
-                    <select required class="find-doctor__input" id="disease" name="diseaseId">
-                        <option value="" disabled selected hidden>Select a symtom</option>
-                        <option value="1">Fever</option>
-                        <option value="2">Chest Pain</option>
-                        <option value="3">Headache</option>
-                        <option value="3">Pimples and rashes</option>
-                       
-                    </select>
-                    <label for="disease" class="find-doctor__label">Symtoms</label>
+    <form action="/showDoctors" method="post" >
+    <div class="find-doctor" >
+        <h1 class="find-doctor__title">Find a Doctor</h1>
+        <form id="find-doctor-form" class="container">
+            <div class="find-doctor__content">
+                <div class="find-doctor__box">
+                    <i class="ri-hospital-line find-doctor__icon"></i>
+                    <div class="find-doctor__box-input">
+                        <select required class="find-doctor__input" id="disease" name="diseaseId">
+                            <option value="" disabled selected hidden name="symtom">Select a symptom</option>
+                            <option value="1">Fever</option>
+                            <option value="2">Chest Pain</option>
+                            <option value="3">Headache</option>
+                            <option value="4">Pimples and rashes</option>
+                        </select>
+                        <label for="disease" class="find-doctor__label">Symptoms</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="find-doctor__button">Find Doctors</button>
-    </form>
-    <div id="doctors-list" class="doctors-list"></div>
-</div>
-
-
+            <button type="submit" class="find-doctor__button">Find Doctors</button>
+        </form>
+        <div id="doctors-list" class="doctors-list"></div>
+      </div>
+      </form>
 </body>
 </html>

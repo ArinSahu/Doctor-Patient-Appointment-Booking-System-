@@ -1,0 +1,95 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('/a4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.find-doctor {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.find-doctor__title {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+.find-doctor__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.find-doctor__box {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.find-doctor__icon {
+    font-size: 24px;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.find-doctor__box-input {
+    width: 100%;
+}
+
+.find-doctor__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.find-doctor__label {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    font-size: 14px;
+    color: #6c757d;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0 5px;
+}
+
+.find-doctor__button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.find-doctor__button:hover {
+    background-color: #0056b3;
+}
+
+.doctors-list {
+    margin-top: 20px;
+}
