@@ -57,10 +57,7 @@ const doctorloginSchema= new mongoose.Schema({
         required: true
     },
     timeSlots: [{
-        doctorId:{
-            type:Number,
-            required:true
-        },
+        
         date:{
             type:Date
         },
@@ -69,8 +66,17 @@ const doctorloginSchema= new mongoose.Schema({
         },
         endTime:{
             type:String
-        }        
-    }]
+        },
+        avgTime:{
+            type:String
+        } ,
+        booked: [{
+            type: String, 
+            default: ''
+        }]
+
+    }],
+    
 });
 
 

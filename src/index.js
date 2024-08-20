@@ -61,7 +61,7 @@ app.post("/login", async (req, res) => {
         const isPasswordMatch = await bcrypt.compare(req.body.password, check.password);
        // console.log(isPasswordMatch);
         if (isPasswordMatch) {
-            res.render("home");
+            res.render("home",{patient:check});
         }
         else {
             res.render("login", { message: "Wrong password" });
@@ -131,10 +131,11 @@ app.post("/addTimeSlot", async (req, res) => {
             return;
         }
         const newTimeSlot = {
-            doctorId: doctor.reg_id,
             date: req.body.date,
             startTime: req.body.startTime,
-            endTime: req.body.endTime
+            endTime: req.body.endTime,
+            avgTime: req.body.avgTime,
+            booked: generateBookedSlots(req.body.startTime, req.body.endTime, req.body.avgTime)
         };
         doctor.timeSlots.push(newTimeSlot);
         await doctor.save();
@@ -142,10 +143,32 @@ app.post("/addTimeSlot", async (req, res) => {
     } catch (error) {
         res.send("Error adding time slot");
     }
+    function generateBookedSlots(startTime, endTime, avgTime) {
+        const slots = [];
+        
+        // Convert times to minutes
+        const start = convertToMinutes(startTime);
+        const end = convertToMinutes(endTime);
+        const avg = parseInt(avgTime);
+    
+        // Create slots from start to end based on avgTime
+        for (let time = start; time < end; time += avg) {
+            slots.push('');  // Empty string indicates the slot is free
+        }
+    
+        return slots;
+    }
+    
+    // Helper function to convert HH:MM to minutes
+    function convertToMinutes(timeStr) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
 });
 
 
 app.post("/showDoctors",async(req,res)=>{
+    const patient= req.body.patient;
     const symptom = req.body.symtom;
     const specialityData = await symtoms.findOne({ symtoms: symptom });
         if (!specialityData) {
@@ -157,8 +180,27 @@ app.post("/showDoctors",async(req,res)=>{
             res.status(404).send("No doctors found for this speciality");
             return;
         }
-        res.render("doctorsList", { doctors: doctorsList });
+        res.render("doctorsList", { doctors: doctorsList,patient });
+        // console.log(patient);
 });
+
+app.get("/bookAppointment", async (req, res) => {
+    const doctorId = req.query.doctorId;
+    const patient=req.query.patient;
+    console.log(patient);
+    try {
+        const doctor = await doctors.findById(doctorId);
+        if (!doctor) {
+            res.status(404).send("Doctor not found");
+            return;
+        }
+
+        res.render("bookAppointment", { doctor,patient });
+    } catch (error) {
+        res.status(500).send("Error loading appointment page");
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`server running on port :${port}`);

@@ -9,12 +9,17 @@
 <body>
     <div class="container">
         <h1>Doctors List</h1>
+        Select a  doctor  <%= patient %>
+        <input type="hidden" name="patient" value="<%= patient.name %>">
         <% doctors.forEach(doctor => { %>
             <div class="doctor-card">
                 <h2>Dr. <%= doctor.name %></h2>
                 <p><strong>Email:</strong> <%= doctor.email %></p>
                 <p><strong>Phone Number:</strong> <%= doctor.phone_no %></p>
                 <p><strong>Speciality:</strong> <%= doctor.speciality %></p>
+                <a href="/bookAppointment?doctorId=<%= doctor._id %>&patient=<%= patient %>">
+                    <button>Book</button>
+                </a>
             </div>
         <% }); %>
     </div>

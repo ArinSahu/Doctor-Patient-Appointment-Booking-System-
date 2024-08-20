@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link rel="stylesheet" href="/styleBookAppointment.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Book an Appointment with Dr. <%= doctor.name %></h1>
+        <p>Hello <%= patient %>, please select a date and time slot below:</p>
+        <form action="/bookAppointment" method="post">
+            <input type="hidden" name="doctorId" value="<%= doctor._id %>">
+            <input type="hidden" name="patient" value="<%= patient %>">
+            
+            <label for="date">Select Date:</label>
+            <select id="date" name="date" required>
+                <% doctor.timeSlots.forEach((slot, index) => { %>
+                    <option value="<%= index %>"><%= slot.date.toDateString() %></option>
+                <% }); %>
+            </select>
+
+           
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    
+    
+</body>
+</html>

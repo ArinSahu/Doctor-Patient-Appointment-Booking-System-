@@ -10,6 +10,8 @@
 <body>
     <form action="/showDoctors" method="post" >
     <div class="find-doctor" >
+        <input type="hidden" name="patient" value="<%= patient.name %>">
+        Hello <%= patient.name %>
         <h1 class="find-doctor__title">Find a Doctor</h1>
         <form id="find-doctor-form" class="container">
             <div class="find-doctor__content">
