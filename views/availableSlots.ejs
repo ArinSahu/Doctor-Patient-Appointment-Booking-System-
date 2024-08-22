@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Slots</title>
+    <style>
+        .slot {
+            margin: 10px 0;
+        }
+        .booked {
+            color: red;
+            text-decoration: line-through;
+        }
+        .available {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Slots for Dr. <%= doctor.name %> on <%= doctor.timeSlots[dateIndex].date.toDateString() %></h1>
+    <p>Hello, <%= patient %>. Please select a time slot below:</p>
+
+    <form action="/finalBookAppointment" method="post">
+        <input type="hidden" name="doctorId" value="<%= doctor._id %>">
+        <input type="hidden" name="dateIndex" value="<%= dateIndex %>">
+        <input type="hidden" name="patient" value="<%= patient %>">
+
+        <div class="slots">
+            <% 
+            const startTimeInMinutes = parseInt(doctor.timeSlots[dateIndex].startTime.split(':')[0]) * 60 + parseInt(doctor.timeSlots[dateIndex].startTime.split(':')[1]);
+            const avgTime = parseInt(doctor.timeSlots[dateIndex].avgTime);
+            
+            doctor.timeSlots[dateIndex].booked.forEach((slot, index) => {
+                const slotTimeInMinutes = startTimeInMinutes + (index * avgTime);
+                const slotHours = Math.floor(slotTimeInMinutes / 60);
+                const slotMinutes = slotTimeInMinutes % 60;
+                const slotTimeFormatted = `${slotHours.toString().padStart(2, '0')}:${slotMinutes.toString().padStart(2, '0')}`;
+            %>
+                <div class="slot">
+                    <% if (slot === '') { %>
+                        <input type="radio" id="slot<%= index %>" name="timeSlot" value="<%= index %>" required>
+                        <label class="available" for="slot<%= index %>">Slot <%= index + 1 %>: <%= slotTimeFormatted %> (Available)</label>
+                    <% } else { %>
+                        <label class="booked">Slot <%= index + 1 %>: <%= slotTimeFormatted %> (Booked)</label>
+                    <% } %>
+                </div>
+            <% }); %>
+        </div>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+</body>
+</html>

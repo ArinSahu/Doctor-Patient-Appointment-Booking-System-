@@ -146,20 +146,20 @@ app.post("/addTimeSlot", async (req, res) => {
     function generateBookedSlots(startTime, endTime, avgTime) {
         const slots = [];
         
-        // Convert times to minutes
+       
         const start = convertToMinutes(startTime);
         const end = convertToMinutes(endTime);
         const avg = parseInt(avgTime);
     
-        // Create slots from start to end based on avgTime
+       
         for (let time = start; time < end; time += avg) {
-            slots.push('');  // Empty string indicates the slot is free
+            slots.push('');  
         }
     
         return slots;
     }
     
-    // Helper function to convert HH:MM to minutes
+   
     function convertToMinutes(timeStr) {
         const [hours, minutes] = timeStr.split(':').map(Number);
         return hours * 60 + minutes;
@@ -184,10 +184,10 @@ app.post("/showDoctors",async(req,res)=>{
         // console.log(patient);
 });
 
-app.get("/bookAppointment", async (req, res) => {
+app.get("/bookAppointmenst", async (req, res) => {
     const doctorId = req.query.doctorId;
     const patient=req.query.patient;
-    console.log(patient);
+    // console.log(patient);
     try {
         const doctor = await doctors.findById(doctorId);
         if (!doctor) {
@@ -200,6 +200,49 @@ app.get("/bookAppointment", async (req, res) => {
         res.status(500).send("Error loading appointment page");
     }
 });
+
+app.post("/getDate", async (req, res) => {
+    const doctorId = req.body.doctorId;
+    const dateIndex = req.body.date;
+    const patient=req.body.patient;
+
+    try {
+        const doctor = await doctors.findById(doctorId);
+        if (!doctor || !doctor.timeSlots[dateIndex]) {
+            return res.status(404).send("Doctor or Time Slot not found");
+        }
+
+        res.render("availableSlots", { doctor, dateIndex ,patient});
+        // console.log(dateIndex);
+    } catch (error) {
+        res.status(500).send("Error processing the date");
+    }
+});
+
+app.post("/finalBookAppointment", async (req, res) => {
+    const doctorId = req.body.doctorId;
+    const dateIndex = req.body.dateIndex;
+    const timeSlotIndex = req.body.timeSlot;
+    const patient = req.body.patient;
+
+    try {
+       
+        const doctor = await doctors.findById(doctorId);
+        if (!doctor) {
+            return res.status(404).send("Doctor not found");
+        }
+        if (doctor.timeSlots[dateIndex].booked[timeSlotIndex] !== '') {
+            return res.status(400).send("This time slot is already booked");
+        }
+        doctor.timeSlots[dateIndex].booked[timeSlotIndex] = patient;
+        await doctor.save();
+
+        res.send(`Appointment successfully booked for ${patient} on ${doctor.timeSlots[dateIndex].date.toDateString()} at ${doctor.timeSlots[dateIndex].booked[timeSlotIndex]}`);
+    } catch (error) {
+        res.status(500).send("Error booking the appointment");
+    }
+});
+
 
 
 app.listen(port, () => {
